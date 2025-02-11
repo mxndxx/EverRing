@@ -86,6 +86,7 @@ jobs:
               ].join("\n");
 
               const detail = [
+                `🔍 Show Detail`,
                 `| Category | Score |`,
                 `| --- | --- |`,
                 `| ${score(
