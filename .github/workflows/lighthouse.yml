@@ -79,7 +79,7 @@ jobs:
                 `| --- | --- |`,
                 `| ${score(summary.performance)} Performance | ${summary.performance} |`,
                 `| ${score(summary.accessibility)} Accessibility | ${summary.accessibility} |`,
-                `| ${score(summary."best-practices")} Best practices | ${summary."best-practices"} |`,
+                `| ${score(summary.["best-practices"])} Best practices | ${summary.["best-practices"]} |`,
                 `| ${score(summary.seo)} SEO | ${summary.seo} |`,
               ].join("\n");
 
