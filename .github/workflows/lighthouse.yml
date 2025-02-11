@@ -1,5 +1,16 @@
-name: Run lighthouse CI When Push
-on: [push]
+name: Run Lighthouse CI (Push on PR to master branch)
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+
+permissions:
+  contents: read
+  pull-requests: write
+
 jobs:
   lhci:
     name: Lighthouse CI
@@ -62,25 +73,44 @@ jobs:
 
               const score = (res) => (res >= 90 ? "🟢" : res >= 50 ? "🟠" : "🔴");
 
+              const { performance, accessibility, 'best-practices': bestPractices, seo, pwa } = summary;
+
               const comment = [
                 `⚡️ Lighthouse report!`,
                 `| Category | Score |`,
                 `| --- | --- |`,
-                `| ${score(summary.performance)} Performance | ${summary.performance} |`,
-                { ... }
-              ].join("\n");
-
-              const detail = [
-                `| Category | Score |`,
-                `| --- | --- |`,
+                `| ${score(performance)} Performance | ${performance} |`,
+                `| ${score(accessibility)} Accessibility | ${accessibility} |`,
+                `| ${score(bestPractices)} Best practices | ${bestPractices} |`,
+                `| ${score(seo)} SEO | ${seo} |`,
+                `🔍 Show Detail`,
                 `| ${score(
                   audits["first-contentful-paint"].score * 100
                 )} First Contentful Paint | ${
                   audits["first-contentful-paint"].displayValue
                 } |`,
-                { ... }
+                `| ${score(
+                  audits["largest-contentful-paint"].score * 100
+                )} Largest Contentful Paint | ${
+                  audits["largest-contentful-paint"].displayValue
+                } |`,
+                `| ${score(
+                  audits["speed-index"].score * 100
+                )} Speed Index | ${
+                  audits["speed-index"].displayValue
+                } |`,
+                `| ${score(
+                  audits["total-blocking-time"].score * 100
+                )} Total Blocking Time | ${
+                  audits["total-blocking-time"].displayValue
+                } |`,
+                `| ${score(
+                  audits["cumulative-layout-shift"].score * 100
+                )} Cumulative Layout Shift | ${
+                  audits["cumulative-layout-shift"].displayValue
+                } |`,
               ].join("\n");
-              comments += comment + "\n" + detail + "\n";
+              comments += comment + "\n";
             });
             core.setOutput('comments', comments)
 
