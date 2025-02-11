@@ -78,17 +78,12 @@ jobs:
               const comment = [
                 `⚡️ Lighthouse report!`,
                 `| Category | Score |`,
-                `|  |  |`,
+                `| --- | --- |`,
                 `| ${score(performance)} Performance | ${performance} |`,
                 `| ${score(accessibility)} Accessibility | ${accessibility} |`,
                 `| ${score(bestPractices)} Best practices | ${bestPractices} |`,
                 `| ${score(seo)} SEO | ${seo} |`,
-              ].join("\n");
-
-              const detail = [
                 `🔍 Show Detail`,
-                `| Category | Score |`,
-                `| --- | --- |`,
                 `| ${score(
                   audits["first-contentful-paint"].score * 100
                 )} First Contentful Paint | ${
@@ -115,7 +110,7 @@ jobs:
                   audits["cumulative-layout-shift"].displayValue
                 } |`,
               ].join("\n");
-              comments += comment + "\n" + detail + "\n";
+              comments += comment + "\n";
             });
             core.setOutput('comments', comments)
 
