@@ -78,7 +78,6 @@ jobs:
               const comment = [
                 `⚡️ Lighthouse report!`,
                 `| Category | Score |`,
-                `| --- | --- |`,
                 `| ${score(performance)} Performance | ${performance} |`,
                 `| ${score(accessibility)} Accessibility | ${accessibility} |`,
                 `| ${score(bestPractices)} Best practices | ${bestPractices} |`,
@@ -88,7 +87,6 @@ jobs:
               const detail = [
                 `🔍 Show Detail`,
                 `| Category | Score |`,
-                `| --- | --- |`,
                 `| ${score(
                   audits["first-contentful-paint"].score * 100
                 )} First Contentful Paint | ${
