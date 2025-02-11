@@ -73,14 +73,16 @@ jobs:
 
               const score = (res) => (res >= 90 ? "🟢" : res >= 50 ? "🟠" : "🔴");
 
+              const { performance, accessibility, 'best-practices': bestPractices, seo, pwa } = summary;
+
               const comment = [
                 `⚡️ Lighthouse report!`,
                 `| Category | Score |`,
                 `| --- | --- |`,
-                `| ${score(summary.performance)} Performance | ${summary.performance} |`,
-                `| ${score(summary.accessibility)} Accessibility | ${summary.accessibility} |`,
-                `| ${score(summary.["best-practices"])} Best practices | ${summary.["best-practices"]} |`,
-                `| ${score(summary.seo)} SEO | ${summary.seo} |`,
+                `| ${score(performance)} Performance | ${performance} |`,
+                `| ${score(accessibility)} Accessibility | ${accessibility} |`,
+                `| ${score(bestPractices)} Best practices | ${bestPractices} |`,
+                `| ${score(seo)} SEO | ${seo} |`,
               ].join("\n");
 
               const detail = [
